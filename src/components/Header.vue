@@ -55,7 +55,7 @@
   align-items: center;
   background-color: white;
   padding: 2rem 20px;
-  border-bottom: 1px solid red;
+  box-shadow: 1px 1px 5px gray;
 }
 
 .logo {
