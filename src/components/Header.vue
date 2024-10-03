@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { RouterLink } from "vue-router";
+</script>
+
 <template>
   <div class="header">
     <img
@@ -8,31 +12,34 @@
     <div class="header_links">
       <div class="link">
         <img class="icon" src="/src/assets/icons/stats.png" alt="" />
-        <p>Statistiques</p>
+        <RouterLink to="/">
+          <p>Statistiques</p>
+        </RouterLink>
       </div>
       <div class="link">
         <img class="icon" src="/src/assets/icons/enter.png" alt="" />
-        <p>Entrés Atelier</p>
+        <RouterLink to="retour-atelier">
+          <p>Entrés Atelier</p>
+        </RouterLink>
       </div>
+
       <div class="link">
         <img
           class="icon"
           src="/src/assets/icons/data-manipulation.png"
           alt=""
         />
-        <p>Gerer les campagnes</p>
-      </div>
-      <div class="link">
-        <img
-          class="icon"
-          src="/src/assets/icons/data-manipulation.png"
-          alt=""
-        />
-        <p>Marketing Direct</p>
+        <RouterLink to="marketing-direct">
+          <p>Marketing Direct</p>
+        </RouterLink>
       </div>
       <div class="link">
         <img class="icon" src="/src/assets/icons/stats.png" alt="" />
-        <p>Mes clients</p>
+        <RouterLink to="mes-clients"><p>Mes clients</p></RouterLink>
+      </div>
+      <div class="link">
+        <img class="icon" src="/src/assets/icons/stats.png" alt="" />
+        <RouterLink to="mon-compte"><p>Mon compte</p></RouterLink>
       </div>
     </div>
     <div class="header_actions">
