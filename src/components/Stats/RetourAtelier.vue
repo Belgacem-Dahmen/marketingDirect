@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <Bar class="bar" :data="data" :options="options" />
+
   </div>
 </template>
 <script setup>
@@ -14,6 +15,7 @@ import {
   LinearScale,
 } from "chart.js";
 import { Bar } from "vue-chartjs";
+import { useStatsStore } from "../../stores/statsStore";
 
 ChartJS.register(
   CategoryScale,
@@ -23,10 +25,25 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+const statsStore = useStatsStore();
+const statsRetourAtelier = statsStore.statsRetourAtelier;
+const campagnesNames = statsStore.campagnesNames;
 
 const data = {
-  labels: ["January", "February", "March", "April"],
-  datasets: [{ data: [12, 8, 15, 1] }],
+  labels: campagnesNames,
+  datasets: [
+    {
+      label: "Entrée Atelier",
+      backgroundColor: "rgba(75, 192, 192, 0.2)", // Couleur de fond
+      borderColor: "rgba(75, 192, 192, 1)", // Couleur de bordure
+      borderWidth: 2, // Largeur de la bordure
+      pointBackgroundColor: "rgba(255, 99, 132, 1)", // Couleur des points
+      pointBorderColor: "#fff", // Couleur de bordure des points
+      pointBorderWidth: 2, // Largeur de la bordure des points
+      pointHoverRadius: 5, // Taille des points au survol
+      data: statsRetourAtelier,
+    },
+  ],
 };
 const options = {
   responsive: true,

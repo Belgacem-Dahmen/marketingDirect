@@ -1,7 +1,7 @@
 <template>
   <h1>relances</h1>
   <div class="container">
-    <Line :data="data" :options="options" />
+    <Line :data="Relancedata" :options="options" />
   </div>
 </template>
 
@@ -28,15 +28,38 @@ ChartJS.register(
   Legend
 );
 
-const data = {
-  labels: ["January", "February", "March", "April", "May", "June", "July"],
+const Relancedata = {
+  labels: ["January", "February", "March", "April"],
   datasets: [
     {
-      label: "Data One",
-      backgroundColor: "#f87979",
-      data: [40, 39, 10, 40, 39, 80, 40],
+      label: "Relances",
+      backgroundColor: "rgba(75, 192, 192, 0.2)", // Couleur de fond
+      borderColor: "rgba(75, 192, 192, 1)", // Couleur de bordure
+      borderWidth: 3, // Largeur de la bordure
+      pointBackgroundColor: "rgba(255, 99, 132, 1)", // Couleur des points
+      pointBorderColor: "#fff", // Couleur de bordure des points
+      pointBorderWidth: 2, // Largeur de la bordure des points
+      pointHoverRadius: 5, // Taille des points au survol
+      data: [40, 39, 55, 40],
     },
+    
   ],
+  plugins: {
+    legend: {
+      display: true, // Affiche ou non la légende
+      position: 'top', // Position : 'top', 'bottom', 'left', 'right'
+      labels: {
+        color: '#000', // Couleur du texte de la légende
+        font: {
+          size: 16, // Taille de la police
+        },
+      },
+    },
+  },
+};
+
+const options = {
+  responsive: true,
 };
 </script>
 

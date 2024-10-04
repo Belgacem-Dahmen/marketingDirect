@@ -1,3 +1,10 @@
+<script setup>
+import { useAccountStore } from "../stores/accountStore";
+
+const accountStore = useAccountStore();
+const account = accountStore.account;
+</script>
+
 <template>
   <h1 class="monCompte_header">Information de diffusion</h1>
 
@@ -8,7 +15,7 @@
     </p>
   </div>
 
-  <div class="form_container">
+  <div v-if="account" class="form_container">
     <h3>
       Ces informations sont utilisées dans votre communication à destination des
       automobilistes.
@@ -16,53 +23,60 @@
     <form>
       <div class="form-group">
         <label for="Prénom ">Prénom :</label>
-        <input type="text" />
+        <input type="text" :value="account.prenom" />
       </div>
 
       <div class="form-group">
         <label for="nom ">Nom :</label>
-        <input type="text" />
+        <input type="text" :value="account.nom" />
       </div>
 
       <div class="form-group">
         <label for="nomComercial ">Nom Commercial :</label>
-        <input type="text" />
+        <input type="text" :value="account.nomCommercial" />
       </div>
 
       <div class="form-group">
         <label for="nomDiffusion ">Nom de diffusion SMS:</label>
-        <input type="text" />
+        <input type="text" :value="account.nomDiffusionSms" />
       </div>
 
       <div class="form-group">
         <label for="adresseDiffusion ">Adresse de diffsuion:</label>
-        <input type="text" />
+        <input type="text" :value="account.adresseDiffusion" />
       </div>
 
       <div class="form-group">
         <label for="villeDiffusion ">Ville de diffsuion:</label>
-        <input type="text" />
+        <input type="text" :value="account.villeDiffusion" />
       </div>
 
       <div class="form-group">
         <label for="telDiffusion ">Telephone de diffusion:</label>
-        <input type="text" />
+        <input type="text" :value="account.telephoneDiffusion" />
       </div>
 
       <div class="form-group">
         <label for="email "> E-mail:</label>
-        <input type="email" />
+        <input type="email" :value="account.emailDiffusion" />
       </div>
       <div class="form-group">
         <label for="siteWeb ">Site Web:</label>
-        <input type="text" />
+        <input type="text" :value="account.siteWeb" />
       </div>
       <div class="form-group">
         <label for="urlRdv ">URL de prise de RDV</label>
-        <input type="text" />
+        <input type="text" :value="account.urlRdv" />
+      </div>
+
+      <div class="form-group">
+        <button>Mettre a jour</button>
+        <button>Annuler</button>
       </div>
     </form>
   </div>
+
+  <div v-else="">merci de verifier les informations account</div>
 </template>
 
 <style>
