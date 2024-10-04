@@ -2,10 +2,13 @@
 import RetourAtelier from "../components/Stats/RetourAtelier.vue";
 import RelanceParCampagne from "../components/Stats/RelancesParCampagne.vue";
 import QualiteDonnéesClients from "../components/Stats/QualiteDonnéesClients.vue";
+import StatBoard from "../components/Stats/StatBoard.vue";
+
 </script>
 
 <template>
-  <h2>Statistiques</h2>
+  
+  <StatBoard />
   <RetourAtelier />
   <RelanceParCampagne />
   <QualiteDonnéesClients />

@@ -1,32 +1,40 @@
 <template>
   <h2>Qualité des données clients</h2>
-  <div class="container">
+  <div c></div>
+  <div class="">
     <div>
-      <Doughnut
-        aria-label="Sales figures for the years 2022 to 2024. Sales in 2022: 987, Sales in 2023: 1209, Sales in 2024: 825."
-        class="donut"
-        :data="emailData"
-        :options="options"
-      />
-    </div>
-    <div>
-      <Doughnut class="donut" :data="smsData" :options="options" />
+      <h3>Analyse de la base client :</h3>
+      <div class="container">
+        <div>
+          <Pie class="donut" :data="emailData" :options="options" />
+        </div>
+        <div>
+          <Pie class="donut" :data="smsData" :options="options" />
+        </div>
+        <div>
+          <Pie class="donut" :data="rgpdData" :options="options" />
+        </div>
+       
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "vue-chartjs";
-
+import { Pie } from "vue-chartjs";
+import { useStatsStore } from "../../stores/statsStore";
 ChartJS.register(ArcElement, Tooltip, Legend);
+
+const statsStore = useStatsStore();
+const quality = statsStore.stats.quality;
 
 const emailData = {
   labels: ["Avec Email", "Sans Email"],
   datasets: [
     {
-      backgroundColor: ["#41B883", "#DD1B16"],
-      data: [90, 10],
+      backgroundColor: ["#5DADE2", "#E67E22"],
+      data: [quality.avecEmail, quality.sansEmail],
     },
   ],
 };
@@ -35,14 +43,24 @@ const smsData = {
 
   datasets: [
     {
-      backgroundColor: ["#41B883", "#DD1B16"],
-      data: [66, 34],
+      backgroundColor: ["#5DADE2", "#E67E22"],
+      data: [quality.avecMobile, quality.sansMobile],
     },
   ],
 };
 const options = {
   responsive: true,
   maintainAspectRatio: true,
+};
+
+const rgpdData = {
+  labels: ["Accepte", "Refuse"],
+  datasets: [
+    {
+      backgroundColor: ["#5DADE2", "#E67E22"],
+      data: [quality.rgpdYes, quality.rgpdNo],
+    },
+  ],
 };
 </script>
 <style scoped>

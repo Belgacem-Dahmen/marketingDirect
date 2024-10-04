@@ -17,6 +17,13 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "vue-chartjs";
+import { useStatsStore } from "../../stores/statsStore";
+
+const statsStore = useStatsStore();
+const nombreDeRelance = statsStore.nombreDeRelance;
+const campagnesNames = statsStore.campagnesNames;
+
+console.log(nombreDeRelance);
 
 ChartJS.register(
   CategoryScale,
@@ -29,27 +36,37 @@ ChartJS.register(
 );
 
 const Relancedata = {
-  labels: ["January", "February", "March", "April"],
+  labels: campagnesNames,
   datasets: [
     {
-      label: "Relances",
-      backgroundColor: "rgba(75, 192, 192, 0.2)", // Couleur de fond
+      label: "Relances par Sms",
+      backgroundColor: "rgba(75, 192, 166, 0.2)", // Couleur de fond
       borderColor: "rgba(75, 192, 192, 1)", // Couleur de bordure
-      borderWidth: 3, // Largeur de la bordure
+      borderWidth: 2, // Largeur de la bordure
       pointBackgroundColor: "rgba(255, 99, 132, 1)", // Couleur des points
       pointBorderColor: "#fff", // Couleur de bordure des points
       pointBorderWidth: 2, // Largeur de la bordure des points
       pointHoverRadius: 5, // Taille des points au survol
-      data: [40, 39, 55, 40],
+      data: nombreDeRelance.map((nb) => nb.sms),
     },
-    
+    {
+      label: "Relances par Email",
+      backgroundColor: "rgba(75, 192, 166, 0.2)", // Couleur de fond
+      borderColor: "rgba(75, 192, 192, 1)", // Couleur de bordure
+      borderWidth: 2, // Largeur de la bordure
+      pointBackgroundColor: "rgba(255, 99, 132, 1)", // Couleur des points
+      pointBorderColor: "#fff", // Couleur de bordure des points
+      pointBorderWidth: 2, // Largeur de la bordure des points
+      pointHoverRadius: 5, // Taille des points au survol
+      data: nombreDeRelance.map((nb) => nb.email),
+    },
   ],
   plugins: {
     legend: {
       display: true, // Affiche ou non la légende
-      position: 'top', // Position : 'top', 'bottom', 'left', 'right'
+      position: "bottom", // Position : 'top', 'bottom', 'left', 'right'
       labels: {
-        color: '#000', // Couleur du texte de la légende
+        color: "#000", // Couleur du texte de la légende
         font: {
           size: 16, // Taille de la police
         },
